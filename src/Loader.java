@@ -42,7 +42,7 @@ public class Loader
         }
 
         scan.close();
-        
+
         scanLabels();
 
         line = 0;
@@ -79,15 +79,16 @@ public class Loader
         String chName = "";
         // number position
         if (temp[temp.length - 1].matches("[-+]?\\d*\\.?\\d+") && temp[temp.length - 2].matches("[-+]?\\d*\\.?\\d+")) {
-            
+
             for (int i = 0; i < temp.length - 2; ++i) {
                 chName += temp[i] + " ";
             }
             chName = chName.trim();
 
             for (int i = 0; i < Screen.listCh.length; ++i) {
-                if(Screen.listCh[i].getName().equalsIgnoreCase(chName + ".png")) {
-                    Screen.room.character.add(new Character(i, Integer.parseInt(temp[temp.length-1]), Integer.parseInt(temp[temp.length-2])));
+                if (Screen.listCh[i].getName().equalsIgnoreCase(chName + ".png")) {
+                    Screen.room.character.add(new Character(i, Integer.parseInt(temp[temp.length - 1]),
+                            Integer.parseInt(temp[temp.length - 2])));
                 }
             }
         } else {
@@ -96,50 +97,65 @@ public class Loader
             }
             chName = chName.trim();
             for (int i = 0; i < Screen.listCh.length; ++i) {
-                if(Screen.listCh[i].getName().equalsIgnoreCase(chName + ".png")) {
-                    Screen.room.character.add(new Character(i, temp[temp.length-1]));
+                if (Screen.listCh[i].getName().equalsIgnoreCase(chName + ".png")) {
+                    Screen.room.character.add(new Character(i, temp[temp.length - 1]));
+                }
+            }
+        }
+    }
+    
+    public void hideCharacter(String character)
+    {        
+        for (int i = 0; i < Screen.listCh.length; ++i) {
+            if (Screen.listCh[i].getName().equalsIgnoreCase(character + ".png")) {
+                for(int j = 0; j < Screen.room.character.size(); ++j) {
+                    if(Screen.room.character.get(j).id == i) {
+                        Screen.room.character.remove(j);
+                        i--;
+                        break;
+                    }
                 }
             }
         }
     }
 
-    
-    public void load() 
+    public void load()
     {
+        if (script.size() == line) {
+            System.out.println("Game over.");
+            return;
+        }
         String temp = script.get(line);
         String[] parts = temp.split(" ");
         String args = temp.substring(temp.indexOf(" ") + 1, temp.length());
-        switch(temp.charAt(0)) {
-            case '\"':
-                // print out text stuff
+        if (temp.charAt(0) == '\"') {
+            System.out.println(temp); // replace with call to dialog()
+            ++line;
+            return;
+        }
+        switch (parts[0]) {
+            case "draw":
+                drawCharacter(args);
                 break;
-            case 'd':
-                if(parts[0].equals("draw")) {
-                    drawCharacter(args);
-                }
-                else {
-                    error("Command " + parts[0] + " not recognized.");
-                }
+            case "hide":
+                hideCharacter(args);
                 break;
-            case 'b':
-                if(parts[0].equals("bg")) {
-                    drawBackground(args);
-                }
-                else {
-                    error("Command " + parts[0] + " not recognized.");
-                }
+            case "bg":
+                drawBackground(args);
                 break;
-                
+
         }
         ++line;
+        load();
     }
+
     public void load(String label)
     {
         jumpLabel(label);
         ++line;
         load();
     }
-    
+
     public void error(String msg)
     {
         System.err.printf("%s:%d error: %s.\n", file.getName(), line, msg);

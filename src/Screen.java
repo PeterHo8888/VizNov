@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ public class Screen extends JPanel implements Runnable
 
     // create new thread of ourselves
     public Thread thread = new Thread(this);
-    
+
     public static ArrayList<BufferedImage> backgrounds = new ArrayList<BufferedImage>();
     public static ArrayList<BufferedImage> characters = new ArrayList<BufferedImage>();
 
@@ -27,15 +28,12 @@ public class Screen extends JPanel implements Runnable
     public static boolean isFirst = true;
 
     public static Room room;
-    
+
     public static Loader loader;
-    
+
     public static File[] listBg;
-    
+
     public static File[] listCh;
-    
-    
-    
 
     public Screen()
     {
@@ -47,13 +45,13 @@ public class Screen extends JPanel implements Runnable
     {
         room = new Room();
         loader = new Loader(new File("res/game.scr"));
-        
+
         // load bg
         File folderBg = new File("res/backgrounds/");
         listBg = folderBg.listFiles();
         System.out.println(listBg.length);
-        for(int i = 0; i < listBg.length; ++i) {
-            if(listBg[i].isFile()) {
+        for (int i = 0; i < listBg.length; ++i) {
+            if (listBg[i].isFile()) {
                 try {
                     backgrounds.add(ImageIO.read(listBg[i]));
                 } catch (IOException e) {
@@ -62,12 +60,12 @@ public class Screen extends JPanel implements Runnable
                 }
             }
         }
-        
+
         // load characters
         File folderCh = new File("res/characters/");
         listCh = folderCh.listFiles();
-        for(int i = 0; i < listCh.length; ++i) {
-            if(listCh[i].isFile()) {
+        for (int i = 0; i < listCh.length; ++i) {
+            if (listCh[i].isFile()) {
                 try {
                     characters.add(ImageIO.read(listCh[i]));
                 } catch (IOException e) {
@@ -78,8 +76,18 @@ public class Screen extends JPanel implements Runnable
         }
 
         loader.load("start");
-        loader.load();
-        
+        setMouseHandler();
+    }
+
+    public void setMouseHandler()
+    {
+        addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent me)
+            {
+                //System.out.println(me);
+                loader.load();
+            }
+        });
     }
 
     // this is where you draw all things
@@ -90,11 +98,11 @@ public class Screen extends JPanel implements Runnable
         if (isFirst) {
             myWidth = getWidth();
             myHeight = getHeight();
-            
+
             // create new room and stuff
             define();
-            
-            //done with init
+
+            // done with init
             isFirst = false;
         }
 
