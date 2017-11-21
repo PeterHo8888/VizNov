@@ -8,7 +8,7 @@ Please note that the novel as of current does not automatically scale...
 You'll need to manually scale your images to fit, or maybe add it for me 
 :)
 
-See res/game.scr for an idea of how the scripts work.
+See res/game.scr for an example script.
 
 # Text
 Text is literally just in quotes.
