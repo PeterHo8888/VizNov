@@ -24,12 +24,9 @@ public class Room
     // will be called with Screen's Graphics object
     public void draw(Graphics g)
     {
-        // draw the bg
+        
         background.draw(g);
         
-        // TODO: add loop for each character
-        // for each character in room
-        //   draw character[x]
         for(int i = 0; i < character.size(); ++i) {
             try {
                 character.get(i).draw(g);
@@ -42,6 +39,8 @@ public class Room
         
         g.setColor(new Color(255, 255, 255, 200));
         g.fillRect(0, Screen.myHeight - 200, Screen.myWidth, 200);
+        
+        // TODO: Typewriter effect
         g.setColor(new Color(0, 0, 0, 255)); 
         g.setFont(new Font("CALIBRE", Font.BOLD, 25));
         g.drawString(text, 100, Screen.myHeight - 125);

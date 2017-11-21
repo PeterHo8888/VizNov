@@ -84,7 +84,8 @@ public class Screen extends JPanel implements Runnable
         addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent me)
             {
-                //System.out.println(me);
+                // REMINDER:
+                // Must control if options available
                 loader.load();
             }
         });

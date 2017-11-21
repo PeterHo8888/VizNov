@@ -4,6 +4,15 @@ import java.util.*;
 
 public class Loader
 {
+    /*
+     * TODO:
+     *  - user input (text)
+     *  - user choices
+     *  - variables
+     *  - conditional jumps, etc.
+     */
+    
+    
     File file = null;
     Scanner scan = null;
     int line = 0;
@@ -111,7 +120,6 @@ public class Loader
         String[] parts = temp.split(" ");
         String args = temp.substring(temp.indexOf(" ") + 1, temp.length());
         if (temp.charAt(0) == '\"') {
-            //System.out.println(temp); // replace with call to dialog()
             Screen.room.text = temp;
             ++line;
             return;
