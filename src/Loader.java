@@ -1,24 +1,6 @@
 import java.io.*;
 import java.util.*;
 
-/*
- * Bg code (-1 for no change)
- * Ch code (-1 for now change)
- * Dialog w/ logic
- */
-
-/*
- * TODO: Change loader to read by line number
- * 
- * Loader takes in filepath and line number.
- * 
- * First run: Create 2d array associating to each label a unique line number in the file
- * 
- * On mouseclick, decide what to do.
- * 
- */
-
-// TODO: Resolve background and characters by file name
 
 public class Loader
 {

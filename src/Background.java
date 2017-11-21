@@ -24,7 +24,7 @@ public class Background
         }
     }
     
-    // TODO: Implement reading from file
+    
     public void draw(Graphics g)
     {
         g.drawImage(image, 0, 0, null);
