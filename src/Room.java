@@ -8,7 +8,6 @@ public class Room
     
     public Background background;
     public ArrayList<Character> character = new ArrayList<Character>();
-    public ArrayList<Integer> indexes = new ArrayList<Integer>(); // cos i can't figure anything out atm
     
     public String text = "";
     
