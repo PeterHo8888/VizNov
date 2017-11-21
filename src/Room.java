@@ -10,6 +10,8 @@ public class Room
     public ArrayList<Character> character = new ArrayList<Character>();
     public ArrayList<Integer> indexes = new ArrayList<Integer>(); // cos i can't figure anything out atm
     
+    public String text = "";
+    
     public Room()
     {
         define();
@@ -39,5 +41,10 @@ public class Room
             }
         }
         
+        g.setColor(new Color(255, 255, 255, 200));
+        g.fillRect(0, Screen.myHeight - 200, Screen.myWidth, 200);
+        g.setColor(new Color(0, 0, 0, 255)); 
+        g.setFont(new Font("CALIBRE", Font.BOLD, 25));
+        g.drawString(text, 100, Screen.myHeight - 125);
     }
 }

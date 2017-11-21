@@ -129,7 +129,8 @@ public class Loader
         String[] parts = temp.split(" ");
         String args = temp.substring(temp.indexOf(" ") + 1, temp.length());
         if (temp.charAt(0) == '\"') {
-            System.out.println(temp); // replace with call to dialog()
+            //System.out.println(temp); // replace with call to dialog()
+            Screen.room.text = temp;
             ++line;
             return;
         }
@@ -142,6 +143,9 @@ public class Loader
                 break;
             case "bg":
                 drawBackground(args);
+                break;
+            case "jmp":
+                jumpLabel(args);
                 break;
 
         }
