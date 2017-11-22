@@ -1,10 +1,17 @@
 start:
+jmp no
+bg bg
+"peter" "Abcdefg hijk lmnop"
+"Lily" "That's not very nice..."
+"???" "?"
+jmp start
+no:
 bg bg
 draw lily smile middle
-"peter" "I'm going to rape you"
+"peter" "Abcdefg hijk lmnop"
 hide lily smile
 draw lilysad middle
 "Lily" "That's not very nice..."
 hide lilysad
 "???" "?"
-jmp start
+jmp no

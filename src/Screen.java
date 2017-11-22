@@ -1,4 +1,5 @@
 import java.awt.*;
+
 import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
@@ -35,6 +36,8 @@ public class Screen extends JPanel implements Runnable
 
     public static File[] listCh;
 
+    public static Typewriter typewriter;
+
     public Screen()
     {
         setBackground(Color.PINK);
@@ -44,6 +47,7 @@ public class Screen extends JPanel implements Runnable
     public void define()
     {
         room = new Room();
+        typewriter = new Typewriter();
         loader = new Loader(new File("res/game.scr"));
 
         // load bg
@@ -91,7 +95,14 @@ public class Screen extends JPanel implements Runnable
             {
                 // REMINDER:
                 // Must control if options available
-                loader.load();
+                if (room.done) {
+                    System.out.println("Loading next.");
+                    loader.load();
+                }
+                /*
+                 * else { room.textPos = room.text.length() - 1; }
+                 */
+
             }
         });
     }
@@ -114,8 +125,7 @@ public class Screen extends JPanel implements Runnable
 
         // draws blank space on screen
         // "clears" it
-        g.clearRect(0, 0, getWidth(), getHeight());
-
+        // g.clearRect(0, 0, getWidth(), getHeight());
         room.draw(g);
     }
 
@@ -126,13 +136,18 @@ public class Screen extends JPanel implements Runnable
         // NEVER use paintComponent() for loop
         // ^Java rule
         while (true) {
-            if (!isFirst) {
+
+            //if (!isFirst && !room.first)
+            //typewriter.type();
+            if(!isFirst) {
+                typewriter.type(50);
             }
             repaint();
-
+            
             try {
-                Thread.sleep(100);
+                Thread.sleep(1);
             } catch (Exception e) {
+                System.out.println("Couldn't sleep!");
             }
 
         }

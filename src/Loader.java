@@ -18,7 +18,7 @@ public class Loader
     int line = 0;
 
     ArrayList<String> script = new ArrayList<String>();
-    Hashtable<String, Integer> labels = new Hashtable<String, Integer>();
+    public Hashtable<String, Integer> labels = new Hashtable<String, Integer>();
 
     public Loader(File loadPath)
     {
@@ -48,7 +48,7 @@ public class Loader
         for (int i = 0; i < script.size(); ++i) {
             String temp = script.get(i);
             if (temp.charAt(temp.length() - 1) == ':' && !temp.contains(" ")) {
-                labels.put(temp.substring(0, temp.length() - 1), line);
+                labels.put(temp.substring(0, temp.length() - 1), i);
             }
         }
         System.out.println(labels.size() + " label(s) found.");
@@ -130,12 +130,13 @@ public class Loader
             // We have a speaker!
             if(index != -1 && index != 0) {
                 Screen.room.speaker = temp.substring(1, temp.indexOf("\" \""));
-                Screen.room.text = temp.substring(temp.indexOf("\" \"")+2, temp.length());
+                Screen.typewriter.set(temp.substring(temp.indexOf("\" \"")+2, temp.length()));
             }
             else {
                 Screen.room.speaker = "";
-                Screen.room.text = temp;
+                Screen.typewriter.set(temp);
             }
+            Screen.room.first = true;
             ++line;
             return;
         }
@@ -154,6 +155,7 @@ public class Loader
                 break;
 
         }
+        Screen.room.first = true;
         ++line;
         load();
     }
