@@ -60,7 +60,7 @@ public class Room
             g.drawString(speaker, 75, Screen.myHeight - 150);
             System.out.println("Done.");
         }
-        // TODO: Typewriter effect
+
         g.setColor(new Color(0, 0, 0, 255));
         g.setFont(new Font("CALIBRE", Font.PLAIN, 25));
         /*
