@@ -74,7 +74,7 @@ public class Screen extends JPanel implements Runnable
                 } catch (IOException e) {
                     System.out.println("Error loading characters.");
                     e.printStackTrace();
-                    System.exit(-1);
+                    System.exit(-2);
                 }
             }
         }

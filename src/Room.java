@@ -10,7 +10,7 @@ public class Room
     public ArrayList<Character> character = new ArrayList<Character>();
     
     public String text = "";
-    public String speaker = "Apple";
+    public String speaker = "";
     
     public Room()
     {
@@ -26,14 +26,23 @@ public class Room
     public void draw(Graphics g)
     {
         
-        background.draw(g);
+        try {
+            background.draw(g);
+        } catch (Exception e) {
+            // not sure if this is safe
+            System.out.println("Erroro drawing background with ID " + background.id);
+            e.printStackTrace();
+            System.exit(-3);
+        }
         
         for(int i = 0; i < character.size(); ++i) {
             try {
                 character.get(i).draw(g);
             } catch (Exception e) {
+                // not sure if this is safe
+                System.out.println("Error drawing character with ID " + character.get(i).id);
                 e.printStackTrace();
-                System.exit(0);
+                System.exit(-4);
             }
         }
         
