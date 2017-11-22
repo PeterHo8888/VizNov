@@ -3,7 +3,6 @@ Visual Novel Engine
 
 Note: You must add at least 1 background and character image in their 
 corresponding directory in  ./res.
-
 Bg files are .png or .jpg, and characters are just .png.
 
 Please note that the novel as of current does not automatically scale...
@@ -13,13 +12,13 @@ You'll need to manually scale your images to fit, or maybe add it for me
 See res/game.scr for an example script.
 
 # Text
-Text is literally just in quotes.
+Text is literally just in quotes.  If you want to say who is speaking, then put their name in quotes beforehand.
 
 Example:
 
-`"Hello!"`
+`"Peter" "Hello!"`
 
-I haven't added functionality for which character is saying what yet.
+If you want no name shown, just do one set of quotes.
 
 
 # Backgrounds
