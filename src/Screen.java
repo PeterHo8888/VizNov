@@ -47,7 +47,9 @@ public class Screen extends JPanel implements Runnable
     public void define()
     {
         room = new Room();
-        typewriter = new Typewriter();
+        typewriter = new Typewriter(50);
+        Thread tTypewriter = new Thread(typewriter);
+        tTypewriter.start();
         loader = new Loader(new File("res/game.scr"));
 
         // load bg
@@ -137,9 +139,6 @@ public class Screen extends JPanel implements Runnable
         // ^Java rule
         while (true) {
             
-            if(!isFirst) {
-                typewriter.type(50);
-            }
             repaint();
             
             try {

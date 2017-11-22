@@ -1,40 +1,71 @@
 
-public class Typewriter
+public class Typewriter implements Runnable
 {
     private int x = 0;
-    
+
     private String text;
-    
+
     public boolean isTyping;
 
     private int speed;
-    
-    public Typewriter() {
-        this.x = 0;
-        isTyping = false;
-    }
-    
-    public void type(int speed) {
-        this.speed = speed;
-        if(x < text.length() * this.speed) {
-            ++x;
-            isTyping = false;
-        } else {
-            isTyping = true;
+
+    private boolean go;
+
+    public void run()
+    {
+        System.out.println("Entered thread.");
+        while (true) {
+            while (!go)
+                try {
+                    Thread.sleep(1);
+                } catch (InterruptedException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
+                ;
+
+            go = false;
+            while(true) {
+                if (x < text.length()) {
+                    ++x;
+                    isTyping = false;
+                } else {
+                    isTyping = true;
+                }
+                Screen.room.text = text.substring(0, x);
+                try {
+                    Thread.sleep(this.speed);
+                } catch (Exception e) {}
+            }
         }
-        Screen.room.text = text.substring(0, x / speed);
     }
-    
-    public void set(String text) {
+
+    public void next()
+    {
+        go = true;
+    }
+
+    public Typewriter(int speed)
+    {
+        x = 0;
+        this.speed = speed;
+        isTyping = false;
+        go = false;
+    }
+
+    public void set(String text)
+    {
         this.text = text;
         this.x = 0;
     }
-    
-    public void end() {
-        this.x = text.length() * this.speed - 1;
+
+    public void end()
+    {
+        this.x = text.length() - 1;
     }
-    
-    public boolean isTyping() {
+
+    public boolean isTyping()
+    {
         return isTyping;
     }
 

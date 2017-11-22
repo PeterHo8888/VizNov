@@ -136,6 +136,7 @@ public class Loader
                 Screen.typewriter.set(temp);
             }
             Screen.room.first = true;
+            Screen.typewriter.next();
             ++line;
             return;
         }
