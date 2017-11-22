@@ -59,6 +59,7 @@ public class Room
             g.setFont(new Font("CALIBRE", Font.PLAIN, 25));
             g.drawString(speaker, 75, Screen.myHeight - 150);
             System.out.println("Done.");
+            first = false;
         }
 
         g.setColor(new Color(0, 0, 0, 255));

@@ -136,9 +136,7 @@ public class Screen extends JPanel implements Runnable
         // NEVER use paintComponent() for loop
         // ^Java rule
         while (true) {
-
-            //if (!isFirst && !room.first)
-            //typewriter.type();
+            
             if(!isFirst) {
                 typewriter.type(50);
             }

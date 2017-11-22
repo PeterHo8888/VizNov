@@ -1,24 +1,22 @@
 import java.io.*;
 import java.util.*;
 
-
 public class Loader
 {
     /*
-     * TODO:
-     *  - user input (text)
-     *  - user choices
-     *  - variables
-     *  - conditional jumps, etc.
+     * TODO: - user input (text) 
+     * - user choices 
+     * - variables 
+     * - conditional jumps,
+     * etc.
      */
-    
-    
+
     File file = null;
     Scanner scan = null;
     int line = 0;
 
     ArrayList<String> script = new ArrayList<String>();
-    public Hashtable<String, Integer> labels = new Hashtable<String, Integer>();
+    Hashtable<String, Integer> labels = new Hashtable<String, Integer>();
 
     public Loader(File loadPath)
     {
@@ -34,7 +32,7 @@ public class Loader
         }
 
         System.out.println("Done.");
-        
+
         scan.close();
 
         scanLabels();
@@ -47,8 +45,10 @@ public class Loader
         System.out.print("Scanning labels...");
         for (int i = 0; i < script.size(); ++i) {
             String temp = script.get(i);
-            if (temp.charAt(temp.length() - 1) == ':' && !temp.contains(" ")) {
-                labels.put(temp.substring(0, temp.length() - 1), i);
+            if (temp.length() > 0) {
+                if (temp.charAt(temp.length() - 1) == ':' && !temp.contains(" ")) {
+                    labels.put(temp.substring(0, temp.length() - 1), i);
+                }
             }
         }
         System.out.println(labels.size() + " label(s) found.");
@@ -99,13 +99,13 @@ public class Loader
             }
         }
     }
-    
+
     public void hideCharacter(String character)
-    {        
+    {
         for (int i = 0; i < Screen.listCh.length; ++i) {
             if (Screen.listCh[i].getName().equalsIgnoreCase(character + ".png")) {
-                for(int j = 0; j < Screen.room.character.size(); ++j) {
-                    if(Screen.room.character.get(j).id == i) {
+                for (int j = 0; j < Screen.room.character.size(); ++j) {
+                    if (Screen.room.character.get(j).id == i) {
                         Screen.room.character.remove(j);
                         i--;
                         break;
@@ -126,13 +126,12 @@ public class Loader
         String args = temp.substring(temp.indexOf(" ") + 1, temp.length());
         if (temp.charAt(0) == '\"') {
             int index = temp.indexOf("\" \"");
-            
+
             // We have a speaker!
-            if(index != -1 && index != 0) {
+            if (index != -1 && index != 0) {
                 Screen.room.speaker = temp.substring(1, temp.indexOf("\" \""));
-                Screen.typewriter.set(temp.substring(temp.indexOf("\" \"")+2, temp.length()));
-            }
-            else {
+                Screen.typewriter.set(temp.substring(temp.indexOf("\" \"") + 2, temp.length()));
+            } else {
                 Screen.room.speaker = "";
                 Screen.typewriter.set(temp);
             }

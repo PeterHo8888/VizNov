@@ -5,10 +5,12 @@ bg bg
 "Lily" "That's not very nice..."
 "???" "?"
 jmp start
+
+
 no:
 bg bg
 draw lily smile middle
-"peter" "Abcdefg hijk lmnop"
+"peter" "youre a dumb buhao"
 hide lily smile
 draw lilysad middle
 "Lily" "That's not very nice..."
