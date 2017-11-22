@@ -3,6 +3,7 @@ Visual Novel Engine
 
 Note: You must add at least 1 background and character image in their 
 corresponding directory in  ./res.
+
 Bg files are .png or .jpg, and characters are just .png.
 
 Please note that the novel as of current does not automatically scale...
