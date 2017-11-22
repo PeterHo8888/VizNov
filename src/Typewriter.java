@@ -2,30 +2,24 @@
 public class Typewriter implements Runnable
 {
     private int x = 0;
-
     private String text;
-
-    public boolean isTyping;
-
+    private boolean isTyping;
     private int speed;
-
     private boolean go;
 
     public void run()
     {
         System.out.println("Entered thread.");
         while (true) {
-            while (!go)
+            while (!go) {
                 try {
                     Thread.sleep(1);
-                } catch (InterruptedException e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-                ;
-
+            }
             go = false;
-            while(true) {
+            while (true) {
                 if (x < text.length()) {
                     ++x;
                     isTyping = false;
@@ -35,7 +29,8 @@ public class Typewriter implements Runnable
                 Screen.room.text = text.substring(0, x);
                 try {
                     Thread.sleep(this.speed);
-                } catch (Exception e) {}
+                } catch (Exception e) {
+                }
             }
         }
     }

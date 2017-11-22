@@ -11,12 +11,12 @@ public class Loader
      * etc.
      */
 
-    File file = null;
-    Scanner scan = null;
-    int line = 0;
+    private File file = null;
+    private Scanner scan = null;
+    private int line = 0;
 
-    ArrayList<String> script = new ArrayList<String>();
-    Hashtable<String, Integer> labels = new Hashtable<String, Integer>();
+    private ArrayList<String> script = new ArrayList<String>();
+    private Hashtable<String, Integer> labels = new Hashtable<String, Integer>();
 
     public Loader(File loadPath)
     {
@@ -135,7 +135,6 @@ public class Loader
                 Screen.room.speaker = "";
                 Screen.typewriter.set(temp);
             }
-            Screen.room.first = true;
             Screen.typewriter.next();
             ++line;
             return;
@@ -155,7 +154,6 @@ public class Loader
                 break;
 
         }
-        Screen.room.first = true;
         ++line;
         load();
     }

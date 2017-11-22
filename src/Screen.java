@@ -47,10 +47,12 @@ public class Screen extends JPanel implements Runnable
     public void define()
     {
         room = new Room();
+
+        loader = new Loader(new File("res/game.scr"));
+
         typewriter = new Typewriter(50);
         Thread tTypewriter = new Thread(typewriter);
         tTypewriter.start();
-        loader = new Loader(new File("res/game.scr"));
 
         // load bg
         System.out.print("Loading backgrounds...");
@@ -101,9 +103,10 @@ public class Screen extends JPanel implements Runnable
                     System.out.println("Loading next.");
                     loader.load();
                 }
-                
-                 else { typewriter.end(); }
-                 
+
+                else {
+                    typewriter.end();
+                }
 
             }
         });
@@ -138,9 +141,9 @@ public class Screen extends JPanel implements Runnable
         // NEVER use paintComponent() for loop
         // ^Java rule
         while (true) {
-            
+
             repaint();
-            
+
             try {
                 Thread.sleep(1);
             } catch (Exception e) {
