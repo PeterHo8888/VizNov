@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 public class Background
 {
     public int id;
-    
+
     BufferedImage image = null;
 
     public Background(int bgID)
@@ -19,12 +19,11 @@ public class Background
         try {
             image = Screen.backgrounds.get(id);
         } catch (Exception e) {
-            System.out.println("Couldn't create character. Aborting");
+            System.out.println("Couldn't create background. Aborting");
             System.exit(0);
         }
     }
-    
-    
+
     public void draw(Graphics g)
     {
         g.drawImage(image, 0, 0, null);

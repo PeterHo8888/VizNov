@@ -63,14 +63,10 @@ public class Character
         }
     }
 
-    boolean firstDraw = true;
     // Draw character
     // One object per character
     public void draw(Graphics g)
     {
-        if(firstDraw)
-        System.out.printf("Drawing character with ID %d @ (%d, %d)\n", id, x, y);
-        firstDraw = false;
         g.drawImage(image, x, y, null);
     }
 }

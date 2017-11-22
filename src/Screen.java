@@ -49,7 +49,6 @@ public class Screen extends JPanel implements Runnable
         // load bg
         File folderBg = new File("res/backgrounds/");
         listBg = folderBg.listFiles();
-        System.out.println(listBg.length);
         for (int i = 0; i < listBg.length; ++i) {
             if (listBg[i].isFile()) {
                 try {
