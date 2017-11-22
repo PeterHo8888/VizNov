@@ -95,13 +95,13 @@ public class Screen extends JPanel implements Runnable
             {
                 // REMINDER:
                 // Must control if options available
-                if (room.done) {
+                if (typewriter.isTyping()) {
                     System.out.println("Loading next.");
                     loader.load();
                 }
-                /*
-                 * else { room.textPos = room.text.length() - 1; }
-                 */
+                
+                 else { typewriter.end(); }
+                 
 
             }
         });
