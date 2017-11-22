@@ -22,6 +22,7 @@ public class Loader
 
     public Loader(File loadPath)
     {
+        System.out.print("Loading " + loadPath.toString() + "...");
         try {
             scan = new Scanner(loadPath);
             while (scan.hasNext()) {
@@ -32,6 +33,8 @@ public class Loader
             e.printStackTrace();
         }
 
+        System.out.println("Done.");
+        
         scan.close();
 
         scanLabels();
@@ -41,12 +44,14 @@ public class Loader
 
     public void scanLabels()
     {
+        System.out.print("Scanning labels...");
         for (int i = 0; i < script.size(); ++i) {
             String temp = script.get(i);
             if (temp.charAt(temp.length() - 1) == ':' && !temp.contains(" ")) {
                 labels.put(temp.substring(0, temp.length() - 1), line);
             }
         }
+        System.out.println(labels.size() + " label(s) found.");
     }
 
     public void jumpLabel(String label)
@@ -120,7 +125,17 @@ public class Loader
         String[] parts = temp.split(" ");
         String args = temp.substring(temp.indexOf(" ") + 1, temp.length());
         if (temp.charAt(0) == '\"') {
-            Screen.room.text = temp;
+            int index = temp.indexOf("\" \"");
+            
+            // We have a speaker!
+            if(index != -1 && index != 0) {
+                Screen.room.speaker = temp.substring(1, temp.indexOf("\" \""));
+                Screen.room.text = temp.substring(temp.indexOf("\" \"")+2, temp.length());
+            }
+            else {
+                Screen.room.speaker = "";
+                Screen.room.text = temp;
+            }
             ++line;
             return;
         }
