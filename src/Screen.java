@@ -47,6 +47,7 @@ public class Screen extends JPanel implements Runnable
         loader = new Loader(new File("res/game.scr"));
 
         // load bg
+        System.out.print("Loading backgrounds...");
         File folderBg = new File("res/backgrounds/");
         listBg = folderBg.listFiles();
         for (int i = 0; i < listBg.length; ++i) {
@@ -54,13 +55,16 @@ public class Screen extends JPanel implements Runnable
                 try {
                     backgrounds.add(ImageIO.read(listBg[i]));
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
+                    System.out.println("Error loading backgrounds.");
                     e.printStackTrace();
+                    System.exit(-1);
                 }
             }
         }
+        System.out.println(listBg.length + " backgrounds loaded.");
 
         // load characters
+        System.out.print("Loading characters...");
         File folderCh = new File("res/characters/");
         listCh = folderCh.listFiles();
         for (int i = 0; i < listCh.length; ++i) {
@@ -68,11 +72,13 @@ public class Screen extends JPanel implements Runnable
                 try {
                     characters.add(ImageIO.read(listCh[i]));
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
+                    System.out.println("Error loading characters.");
                     e.printStackTrace();
+                    System.exit(-1);
                 }
             }
         }
+        System.out.println(listCh.length + " characters loaded.");
 
         loader.load("start");
         setMouseHandler();
