@@ -145,7 +145,7 @@ public class Screen extends JPanel implements Runnable
             repaint();
 
             try {
-                Thread.sleep(1);
+                Thread.sleep(2);
             } catch (Exception e) {
                 System.out.println("Couldn't sleep!");
             }

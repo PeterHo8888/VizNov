@@ -25,7 +25,6 @@ public class Room
     // will be called with Screen's Graphics object
     public void draw(Graphics g)
     {
-        System.out.print("Drawing entities...");
         try {
             background.draw(g);
         } catch (Exception e) {
@@ -52,7 +51,6 @@ public class Room
         g.setColor(new Color(0, 0, 0, 255));
         g.setFont(new Font("CALIBRE", Font.PLAIN, 25));
         g.drawString(speaker, 75, Screen.myHeight - 150);
-        System.out.println("Done.");
 
         g.setColor(new Color(0, 0, 0, 255));
         g.setFont(new Font("CALIBRE", Font.PLAIN, 25));

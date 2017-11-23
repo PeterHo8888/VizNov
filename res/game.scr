@@ -1,5 +1,5 @@
-start:
-jmp no
+lmao:
+jmp start
 bg bg
 "peter" "Abcdefg hijk lmnop"
 "Lily" "That's not very nice..."
@@ -17,3 +17,16 @@ draw lilysad middle
 hide lilysad
 "???" "?"
 jmp no
+
+start:
+bg bg home
+draw lily smile middle
+"Nick" "Ugh... Where am I?"
+hide lily smile
+draw lily sad middle
+"Nick" "I feel like I'm stuck between a rock and a hard place..."
+hide lily sad
+draw lily happy middle
+"Nick" "Except that hard place is in my pants!"
+
+    
