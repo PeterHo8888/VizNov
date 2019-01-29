@@ -1,36 +1,38 @@
-
 public class Typewriter implements Runnable
 {
-    private int x = 0;
-    private String text;
+    private int     x = 0;
+    private String  text;
     private boolean isTyping;
-    private int speed;
+    private int     speed;
     private boolean go;
+    private Hud     hud;
 
     public void run()
     {
         System.out.println("Entered thread.");
         while (true) {
-            while (!go) {
+            while (go) {
+                if (x < text.length()) {
+                    ++x;
+                    isTyping = true;
+                } else {
+                    isTyping = false;
+                    go = false;
+                    break;
+                }
+                hud.text = text.substring(0, x);
+                
                 try {
-                    Thread.sleep(1);
+                    Thread.sleep(speed);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
-            go = false;
-            while (true) {
-                if (x < text.length()) {
-                    ++x;
-                    isTyping = false;
-                } else {
-                    isTyping = true;
-                }
-                Screen.room.text = text.substring(0, x);
-                try {
-                    Thread.sleep(this.speed);
-                } catch (Exception e) {
-                }
+
+            try {
+                Thread.sleep(speed);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }
@@ -38,10 +40,12 @@ public class Typewriter implements Runnable
     public void next()
     {
         go = true;
+        isTyping = true;
     }
 
-    public Typewriter(int speed)
+    public Typewriter(int speed, Hud hud)
     {
+        this.hud = hud;
         x = 0;
         this.speed = speed;
         isTyping = false;
